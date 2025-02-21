@@ -1,0 +1,16 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/user
+      database: user
+  main:
+    allow-circular-references: true
+
+
+weather:
+  api:
+    url: https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
+    key: ${WEATHER_API_KEY}
+server:
+  port: 9011
+

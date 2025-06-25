@@ -23,7 +23,10 @@ public class WeatherController {
         this.simpleEncryptDecryptService = simpleEncryptDecryptService;
     }
 
-
+    @GetMapping("/test")
+    public String test() {
+        return "OK";
+    }
     @GetMapping("/get/{lat}/{lon}")
     public Weather getWeather(@PathVariable String lat ,@PathVariable String lon) throws Exception {
         String name = "prince changani";

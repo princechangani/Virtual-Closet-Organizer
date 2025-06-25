@@ -49,7 +49,7 @@ public class SpringSecurity {
 
 
 
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .exceptionHandling((exceptions) -> exceptions
                         .authenticationEntryPoint(customAuthenticationEntryPoint))
                 .httpBasic(Customizer.withDefaults())

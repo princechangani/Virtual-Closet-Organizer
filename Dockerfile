@@ -1,27 +1,10 @@
-# -------- Stage 1: Build the Spring Boot app --------
-FROM maven:3.9.6-eclipse-temurin-21 AS builder
-
-WORKDIR /app
-
-# Copy pom and source
-COPY pom.xml .
-COPY src ./src
-
-# Package the app (without tests)
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
 RUN mvn clean package -DskipTests
-
-# -------- Stage 2: Create the actual image --------
-FROM eclipse-temurin:21-jdk-slim
-
-WORKDIR /app
-
-# Set environment variables
-ENV JAVA_OPTS=""
 ENV WEATHER_API_KEY="6RPNJKFX95MCJDNXKFC73FA8A"
 
-# Copy the built JAR from the builder stage
-COPY --from=builder /app/target/*.jar app.jar
-
-EXPOSE 8091
-
-ENTRYPOINT sh -c "java $JAVA_OPTS -jar app.jar"
+# Use OpenJDK 17 for the runtime stage
+FROM openjdk:17-jdk-slim
+COPY --from=build /target/Virtual-Closet-Organizer-0.0.1-SNAPSHOT.jar vco.jar
+EXPOSE 8090
+ENTRYPOINT ["java", "-jar", "vco.jar"]

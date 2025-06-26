@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/user
+      uri:  mongodb+srv://princechanganidev:AJiEmXzc8WlRyiHW@cluster0.awovo1g.mongodb.net/user
       database: user
   main:
     allow-circular-references: true
